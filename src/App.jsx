@@ -78,6 +78,10 @@ function App() {
 
       <section className="services-section wrap" id="services">
         <div className="section-heading"><div><p className="eyebrow dark"><span /> WHAT WE DO</p><h2>One workshop.<br /><em>Many capabilities.</em></h2></div><p className="section-intro">A versatile range of metalworking services for projects big and small. Tell us what you need—we’ll help shape the right solution.</p></div>
+        <div className="service-photo-row" aria-label="Examples of metalworking processes">
+          <figure className="service-photo service-photo-welding"><img src="/header-welding.jpg" alt="Welder joining a metal workpiece in a fabrication workshop" /><figcaption><span>FABRICATION</span><b>Welding & metalwork</b></figcaption></figure>
+          <figure className="service-photo service-photo-lathe"><img src="/service-lathe.jpg" alt="Traditional metal lathe with metal shavings in a workshop" /><figcaption><span>MACHINING</span><b>Turning & components</b></figcaption></figure>
+        </div>
         <div className="service-grid">{services.map((service) => <article className="service-card" key={service.number}><div className="card-top"><span>{service.number} / 06</span><span className="service-mark">{service.mark}</span></div><h3>{service.name}</h3><p>{service.detail}</p><a href="#contact" aria-label={`Enquire about ${service.name}`}>Discuss this service <span>↗</span></a></article>)}</div>
         <div className="service-foot"><span>HAVE A DIFFERENT REQUIREMENT?</span><a href="#contact">Let’s talk through it <span>↗</span></a></div>
       </section>

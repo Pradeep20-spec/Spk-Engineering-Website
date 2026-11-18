@@ -12,13 +12,24 @@ footer{background:#1b2522;color:#f1f0e9;padding:77px 0 0}.footer-main{display:fl
 @media(max-width:800px){.contact-layout{grid-template-columns:1fr;gap:26px}.contact-form{padding:24px}.contact-grid>div{padding:16px}}
 @media(max-width:540px){.contact-layout{padding:27px 0 38px;gap:20px}.contact-grid>div{grid-template-columns:64px 1fr;padding:15px 13px;gap:5px 9px}.contact-grid .contact-label{font-size:8px}.contact-grid a,.contact-grid p{font-size:12px;overflow-wrap:anywhere}.contact-note{font-size:9px}.contact-form{padding:20px}.contact-form h3{font-size:20px}}
 
-/* Header image: Unsplash, photo by Jr Sham (https://unsplash.com/photos/a-person-welding-a-piece-of-metal-in-the-dark-FcOKPNDqThA). */
+/* Header and welding image: Unsplash, photo by Jr Sham (https://unsplash.com/photos/a-person-welding-a-piece-of-metal-in-the-dark-FcOKPNDqThA). */
 .topbar{position:relative;isolation:isolate;width:100%;height:84px;background:transparent}
-.topbar::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(90deg,rgba(241,240,233,.86),rgba(241,240,233,.74)),url("/header-welding.jpg");background-size:cover;background-position:center 43%;}
+.topbar::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(90deg,rgba(241,240,233,.48),rgba(241,240,233,.38)),url("/header-welding.jpg");background-size:cover;background-position:center 43%;}
 .topbar-inner{height:100%;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
 :root[data-theme=dark] .topbar{background:transparent}
-:root[data-theme=dark] .topbar::before{background-image:linear-gradient(90deg,rgba(16,23,20,.84),rgba(16,23,20,.72)),url("/header-welding.jpg")}
+:root[data-theme=dark] .topbar::before{background-image:linear-gradient(90deg,rgba(16,23,20,.48),rgba(16,23,20,.40)),url("/header-welding.jpg")}
+.service-photo-row{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin:-4px 0 35px}
+.service-photo{position:relative;height:245px;overflow:hidden;margin:0;background:#29332f}
+.service-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.04);transition:transform .5s}
+.service-photo:hover img{transform:scale(1.025)}
+.service-photo::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(12,18,15,.82))}
+.service-photo figcaption{position:absolute;z-index:1;left:22px;bottom:19px;display:flex;flex-direction:column;gap:5px;color:#f3f1e9}
+.service-photo figcaption span{font:9px var(--mono);letter-spacing:.12em;color:#ed9a77}
+.service-photo figcaption b{font:600 17px var(--display)}
+/* Turning photo: Unsplash, photo by Zoshua Colah (https://unsplash.com/photos/industrial-lathe-machine-with-metal-shavings-Q5swzOgCkgo). */
 @media(max-width:800px){.topbar{height:70px}}
+@media(max-width:800px){.service-photo{height:205px}}
+@media(max-width:540px){.service-photo-row{grid-template-columns:1fr;gap:10px;margin:0 0 25px}.service-photo{height:190px}.service-photo-lathe{height:165px}}
 .header-actions{display:flex;align-items:center;gap:10px}.theme-toggle{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 12px;border:1px solid #c8c7bd;background:transparent;color:var(--ink);font:10px var(--mono);letter-spacing:.04em;cursor:pointer;transition:border-color .2s,background .2s}.theme-toggle:hover{border-color:var(--orange);background:rgba(231,104,54,.08)}.theme-toggle span:first-child{font:20px/1 var(--sans);color:var(--orange)}
 .hero-art{height:430px;position:relative;display:flex;align-items:center;justify-content:center}.hero-photo{position:relative;display:block;width:min(100%,470px);height:340px;overflow:hidden;border:1px solid rgba(245,245,233,.38);background:#2d3833;box-shadow:0 28px 70px rgba(0,0,0,.32)}.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.74) contrast(1.04);transition:transform .6s}.hero-photo:hover img{transform:scale(1.035)}.hero-photo-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,19,16,.05) 25%,rgba(12,19,16,.78) 100%),linear-gradient(90deg,rgba(12,19,16,.15),transparent 72%)}.hero-photo-label{position:absolute;left:20px;bottom:21px;display:flex;flex-direction:column;gap:5px;color:#f3f1e9}.hero-photo-label b{font:11px var(--mono);letter-spacing:.12em;color:#fff}.hero-photo-label span,.hero-photo-link,.hero-photo-index{font:9px var(--mono);letter-spacing:.08em}.hero-photo-label span{color:#d0d4ca}.hero-photo-link{position:absolute;right:18px;bottom:22px;color:#fff}.hero-photo-index{position:absolute;left:8%;top:3%;z-index:1;color:#a8b0a5}
 :root[data-theme=dark]{--ink:#e8ece7;--paper:#101714;--orange:#ed7747;--muted:#a3ada4;--line:#354139;--copy:#b4beb6;--surface:#18221e;--surface-hover:#222d27}
