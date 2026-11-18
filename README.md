@@ -1,25 +1,43 @@
-# SPK Engineering website
+# SPK Engineering
 
-React and Vite website for SPK Engineering, with a contact form that sends enquiries to the business email address.
+**Metal fabrication and machining for practical, made-to-measure work in Chennai, India.**
 
-## Run locally
+SPK Engineering provides fabrication and workshop services for residential, commercial, and industrial requirements. The website introduces the company’s capabilities and makes it easy for customers to get in touch.
 
-```sh
-npm install
-npm run dev
-```
+## Services
 
-## Configure website email
+- Turning
+- Milling
+- Industrial fabrication
+- Rolling shutters
+- Grill work
+- Erection work
 
-The contact endpoint sends mail through Yahoo SMTP. Copy `.env.example` to `.env` and set `SMTP_PASS` to an app password generated in the Yahoo account. Do not use the regular Yahoo account password, commit `.env`, or put SMTP credentials in frontend code.
+## Website features
 
-The other Yahoo SMTP settings are:
+- Responsive design for mobile, tablet, and desktop
+- Light and dark themes
+- Visuals highlighting metalworking and workshop processes
+- Contact form for project enquiries
+- Direct phone and email links
+- Google Maps location link
 
-```env
-SMTP_HOST=smtp.mail.yahoo.com
-SMTP_PORT=465
-SMTP_USER=spk.engineering@yahoo.co.in
-CONTACT_TO=spk.engineering@yahoo.co.in
-```
+## Tech stack
 
-In production, deploy the project on Vercel (which serves `api/contact.js` as a serverless function) and add these values in the project's Environment Variables settings. Redeploy after adding or changing environment variables. The same endpoint is available in Vite development mode.
+- React
+- Vite
+- JavaScript
+- CSS
+- Vercel Serverless Functions
+- Nodemailer
+
+## Contact SPK Engineering
+
+**Location:** Saidapet, Chennai, Tamil Nadu, India  
+**Email:** [spk.engineering@yahoo.co.in](mailto:spk.engineering@yahoo.co.in)  
+**Phone:** [+91 98403 43163](tel:+919840343163)
+**Visit Link**[https://spkengineeringwebsite.vercel.app/](https://spkengineeringwebsite.vercel.app/)
+
+---
+
+Built for SPK Engineering, Chennai.
