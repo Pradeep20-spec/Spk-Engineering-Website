@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 const mapLocationUrl = 'https://maps.app.goo.gl/po1XhTCn47Vcacbn7?g_st=iw'
-const streetViewUrl = 'https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=tMch4POqn0wpL3aWEP5v_w&cb_client=search.gws-prod.grass&yaw=222.13881&pitch=-3.4456308&thumbfov=100&w=1200&h=780'
 
 const services = [
   { number: '01', name: 'Turning', detail: 'Precision turning for components and custom fabrication requirements.', mark: '◉' },
@@ -48,10 +47,12 @@ function App() {
 
   return (
     <main className="site" data-theme={theme}>
-      <header className="topbar wrap">
+      <header className="topbar">
+        <div className="wrap topbar-inner">
         <a className="brand" href="#home" aria-label="SPK Engineering home"><span className="brand-mark">S<span>P</span>K</span><span className="brand-name">SPK <b>ENGINEERING</b></span></a>
         <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
         <div className="header-actions"><button className="theme-toggle" type="button" onClick={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} aria-pressed={theme === 'dark'} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span><span className="theme-toggle-label">{theme === 'light' ? 'Dark' : 'Light'}</span></button><a className="nav-call" href="tel:+919840343163">Call us <span>↗</span></a></div>
+        </div>
       </header>
 
       <section className="hero" id="home">
@@ -64,14 +65,12 @@ function App() {
             <div className="hero-actions"><a className="button button-orange" href="#services">Explore our services <span>↓</span></a><a className="text-link" href="#contact">Talk about your project <span>↗</span></a></div>
             <div className="hero-note"><span className="note-rule" />Turning · Milling · Fabrication · Installation</div>
           </div>
-          <div className="hero-art">
-            <a className="hero-photo" href={mapLocationUrl} target="_blank" rel="noreferrer" aria-label="Open SPK Engineering’s Saidapet location on Google Maps">
-              <img src={streetViewUrl} alt="Google Street View panorama at SPK Engineering’s Saidapet location in Chennai" />
-              <span className="hero-photo-shade" />
-              <span className="hero-photo-label"><b>SPK / SAIDAPET</b><span>CHENNAI, TAMIL NADU</span></span>
-              <span className="hero-photo-link">VIEW LOCATION ↗</span>
-            </a>
-            <span className="hero-photo-index">LOCATION PHOTO · GOOGLE STREET VIEW</span>
+          <div className="hero-art" aria-label="Abstract illustration of a finished metal plate">
+            <div className="art-label label-top">SPK / 01 <span>METALWORK</span></div>
+            <div className="metal-plate plate-back"><i /><i /><i /><i /></div>
+            <div className="metal-plate plate-front"><div className="plate-lines" /><span className="plate-stamp">SPK<br /><small>ENGINEERING</small></span><i /><i /><i /><i /></div>
+            <div className="art-caption"><span>MADE TO MEASURE</span><b>CHENNAI, INDIA</b></div>
+            <div className="art-cross cross-one">＋</div><div className="art-cross cross-two">＋</div>
           </div>
         </div>
         <div className="hero-bottom wrap"><span>BUILT WITH CARE. BUILT TO LAST.</span><span>13°00' N &nbsp; 80°13' E</span></div>
