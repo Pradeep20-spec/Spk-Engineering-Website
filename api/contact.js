@@ -74,9 +74,8 @@ export default async function contactHandler(req, res) {
     await transporter.sendMail({
       from: `SPK Engineering Website <${user}>`,
       to: recipient,
-      replyTo: email,
       subject: `Website enquiry from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nReply to this enquiry by emailing ${email}.`,
     })
 
     return respond(res, 200, { message: 'Your message has been sent.' })
