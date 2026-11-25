@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import './workshop.css'
+import { Explorer, ServiceNav, WorkshopFilm } from './Workshop.jsx'
 
 const mapLocationUrl = 'https://maps.app.goo.gl/po1XhTCn47Vcacbn7?g_st=iw'
 
-const services = [
-  { number: '01', name: 'Turning', detail: 'Precision turning for components and custom fabrication requirements.', mark: '◉' },
-  { number: '02', name: 'Milling', detail: 'Machining work shaped around your part, dimensions and application.', mark: '⌗' },
-  { number: '03', name: 'Industrial fabrication', detail: 'Fabrication work for practical industrial and structural needs.', mark: '▤' },
-  { number: '04', name: 'Rolling shutters', detail: 'Rolling shutter fabrication and installation for your space.', mark: '▥' },
-  { number: '05', name: 'Grill work', detail: 'Made-to-measure grill work for homes and commercial properties.', mark: '▦' },
-  { number: '06', name: 'Erection work', detail: 'On-site erection support to bring fabricated work together.', mark: '⌂' },
-]
-
 function App() {
+  const [active,setActive] = useState(0)
+  const [enquiry, setEnquiry] = useState('')
+  function selectService(name) {
+    const suggestion = 'I would like to enquire about ' + name.toLowerCase() + '. '
+    setEnquiry(current => !current.trim() || /^I would like to enquire about [^.]+\. $/.test(current) ? suggestion : current)
+    requestAnimationFrame(() => document.getElementById('contact-message')?.focus({ preventScroll: true }))
+  }
+
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'light'
     return window.localStorage.getItem('spk-theme') === 'dark' ? 'dark' : 'light'
@@ -39,6 +40,7 @@ function App() {
       const result = await response.json()
       if (!response.ok) throw new Error(result.message || 'Unable to send your message right now.')
       form.reset()
+      setEnquiry('')
       setContactStatus({ type: 'success', message: 'Thanks for reaching out. Your message has been sent.' })
     } catch (error) {
       setContactStatus({ type: 'error', message: error.message || 'Unable to send your message right now. Please call or email us.' })
@@ -48,46 +50,40 @@ function App() {
   return (
     <main className="site" data-theme={theme}>
       <header className="topbar">
+        <div className="reading-progress" aria-hidden="true" />
         <div className="wrap topbar-inner">
         <a className="brand" href="#home" aria-label="SPK Engineering home"><span className="brand-mark">S<span>P</span>K</span><span className="brand-name">SPK <b>ENGINEERING</b></span></a>
-        <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+        <nav aria-label="Main navigation"><ServiceNav choose={setActive}/><a href="#about">About</a><a href="#contact">Contact</a></nav>
         <div className="header-actions"><button className="theme-toggle" type="button" onClick={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} aria-pressed={theme === 'dark'} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span><span className="theme-toggle-label">{theme === 'light' ? 'Dark' : 'Light'}</span></button><a className="nav-call" href="tel:+919840343163">Call us <span>↗</span></a></div>
         </div>
       </header>
 
       <section className="hero" id="home">
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="wrap hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow"><span /> Chennai, Tamil Nadu · Since day one, built to fit</p>
-            <h1>Metalwork made<br />for <em>real work.</em></h1>
-            <p className="hero-intro">From precision machining to on-site erection, SPK Engineering brings practical metal fabrication services together under one roof.</p>
-            <div className="hero-actions"><a className="button button-orange" href="#services">Explore our services <span>↓</span></a><a className="text-link" href="#contact">Talk about your project <span>↗</span></a></div>
-            <div className="hero-note"><span className="note-rule" />Turning · Milling · Fabrication · Installation</div>
-          </div>
-          <div className="hero-art" aria-label="Abstract illustration of a finished metal plate">
-            <div className="art-label label-top">SPK / 01 <span>METALWORK</span></div>
-            <div className="metal-plate plate-back"><i /><i /><i /><i /></div>
-            <div className="metal-plate plate-front"><div className="plate-lines" /><span className="plate-stamp">SPK<br /><small>ENGINEERING</small></span><i /><i /><i /><i /></div>
-            <div className="art-caption"><span>MADE TO MEASURE</span><b>CHENNAI, INDIA</b></div>
-            <div className="art-cross cross-one">＋</div><div className="art-cross cross-two">＋</div>
-          </div>
-        </div>
-        <div className="hero-bottom wrap"><span>BUILT WITH CARE. BUILT TO LAST.</span><span>13°00' N &nbsp; 80°13' E</span></div>
+        <WorkshopFilm/>
+        <div className="film-shade"/>
+        <div className="wrap hero-inner"><div className="hero-copy">
+          <p className="eyebrow"><span/> SPK Engineering / Saidapet, Chennai</p>
+          <h1>Metalwork<br/><em>made to fit.</em></h1>
+          <p className="hero-intro">Custom metal fabrication and on-site installation from our workshop in Chennai.</p>
+          <div className="hero-actions"><a className="button button-orange" href="#services">Explore our services <span>↓</span></a><a className="text-link" href="#contact">Discuss a project ↗</a></div>
+        </div></div>
+        <div className="wrap hero-bottom"><a href="#services">↓ &nbsp; Explore capabilities</a><span>Illustrative welding footage</span></div>
       </section>
-
-      <section className="services-section wrap" id="services">
-        <div className="section-heading"><div><p className="eyebrow dark"><span /> WHAT WE DO</p><h2>One workshop.<br /><em>Many capabilities.</em></h2></div><p className="section-intro">A versatile range of metalworking services for projects big and small. Tell us what you need—we’ll help shape the right solution.</p></div>
-        <div className="service-photo-row" aria-label="Examples of metalworking processes">
-          <figure className="service-photo service-photo-welding"><img src="/header-welding.jpg" alt="Welder joining a metal workpiece in a fabrication workshop" /><figcaption><span>FABRICATION</span><b>Welding & metalwork</b></figcaption></figure>
-          <figure className="service-photo service-photo-lathe"><img src="/service-lathe.jpg" alt="Traditional metal lathe with metal shavings in a workshop" /><figcaption><span>MACHINING</span><b>Turning & components</b></figcaption></figure>
+      <Explorer index={active} choose={setActive} enquire={selectService}/>
+      <section className="about-section" id="about">
+        <div className="wrap process-layout">
+          <div className="process-intro"><p className="eyebrow"><span/> About SPK</p>
+            <h2>From a drawing<br/>to <em>finished metal.</em></h2>
+            <p>SPK Engineering is a metal fabrication business in Saidapet, Chennai. We work with customers on made-to-order parts, assemblies and installations.</p>
+            <a className="button button-outline" href="#contact">Talk through your project <span>↗</span></a>
+          </div>
+          <ol className="process-list">
+            <li><h3>Define the job</h3><p>A sketch, dimensions or a description of the site helps us understand what the work needs to do.</p></li>
+            <li><h3>Shape the metal</h3><p>Metal sections are cut to size and joined to form frames, grills and other made-to-order assemblies.</p></li>
+            <li><h3>Fit on site</h3><p>For shutters, grills and erection work, the opening, fixing points and site access guide the installation discussion.</p></li>
+          </ol>
         </div>
-        <div className="service-grid">{services.map((service) => <article className="service-card" key={service.number}><div className="card-top"><span>{service.number} / 06</span><span className="service-mark">{service.mark}</span></div><h3>{service.name}</h3><p>{service.detail}</p><a href="#contact" aria-label={`Enquire about ${service.name}`}>Discuss this service <span>↗</span></a></article>)}</div>
-        <div className="service-foot"><span>HAVE A DIFFERENT REQUIREMENT?</span><a href="#contact">Let’s talk through it <span>↗</span></a></div>
       </section>
-
-      <section className="about-section" id="about"><div className="wrap about-inner"><div className="about-index">SPK<br /><span>ENGINEERING</span><b>CHENNAI · INDIA</b></div><div className="about-copy"><p className="eyebrow"><span /> ABOUT SPK</p><h2>Good work starts<br />with <em>good listening.</em></h2><p>SPK Engineering is a Chennai-based metal fabrication and machining business serving practical, made-to-order needs. We work closely with customers to understand the job and deliver work that fits its purpose.</p><a className="button button-outline" href="#contact">Start a conversation <span>↗</span></a></div><div className="about-side"><span className="side-number">01—06</span><p>TURNING<br />MILLING<br />FABRICATION<br />ROLLING SHUTTERS<br />GRILL WORK<br />ERECTION</p><span className="side-caption">YOUR REQUIREMENT, MADE REAL.</span></div></div></section>
-
       <footer id="contact">
         <div className="wrap footer-inner">
           <div className="footer-main">
@@ -104,13 +100,18 @@ function App() {
               <h3>Send a Message</h3>
               <label htmlFor="contact-name">Name</label><input id="contact-name" name="name" type="text" placeholder="Your full name" autoComplete="name" maxLength="100" required />
               <label htmlFor="contact-email">Email</label><input id="contact-email" name="email" type="email" placeholder="you@example.com" autoComplete="email" maxLength="254" required />
-              <label htmlFor="contact-message">Message</label><textarea id="contact-message" name="message" placeholder="Tell us about the work you need…" rows="5" maxLength="4000" required />
+              <label htmlFor="contact-message">Message</label><textarea id="contact-message" value={enquiry} onChange={event => setEnquiry(event.target.value)} name="message" placeholder="Tell us about the work you need…" rows="5" maxLength="4000" required />
               <div className="contact-trap" aria-hidden="true"><label htmlFor="contact-website">Leave this field empty</label><input id="contact-website" name="website" type="text" tabIndex="-1" autoComplete="off" /></div>
               <button className="button button-orange contact-submit" type="submit" disabled={contactStatus.type === 'pending'}><span>{contactStatus.type === 'pending' ? 'Sending…' : 'Send Message'}</span><span aria-hidden="true">↗</span></button>
               <p className={`contact-status ${contactStatus.type}`} role="status" aria-live="polite">{contactStatus.message}</p>
             </form>
           </div>
-          <div className="footer-bottom"><a className="brand" href="#home"><span className="brand-mark">S<span>P</span>K</span><span className="brand-name">SPK <b>ENGINEERING</b></span></a><span>© {new Date().getFullYear()} SPK Engineering · Chennai, India</span><a href="#home">BACK TO TOP ↑</a></div>
+          <details className="terms">
+            <summary>Terms and conditions</summary>
+            <p>Use the contact form for project enquiries. Please share only the details needed to discuss your work. SPK Engineering uses your contact details to respond.</p>
+            <p>Submitting an enquiry does not confirm an order. Materials, dimensions, pricing and installation dates are agreed separately with the workshop before work begins.</p>
+          </details>
+          <div className="footer-bottom"><a className="brand" href="#home"><span className="brand-mark">S<span>P</span>K</span><span className="brand-name">SPK <b>ENGINEERING</b></span></a><span>© 2002 SPK Engineering. All rights reserved.<small className="designer-credit">Website by <a href="https://www.linkedin.com/in/pradeep-j-175b38404/" target="_blank" rel="noopener noreferrer">@Pradeep</a></small></span><a href="#home">BACK TO TOP ↑</a></div>
         </div>
       </footer>
     </main>

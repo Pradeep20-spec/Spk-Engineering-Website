@@ -4,7 +4,11 @@ const MAX_BODY_BYTES = 10_000
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 async function readBody(req) {
-  if (req.body && typeof req.body === 'object') return req.body
+  if (req.body !== undefined) {
+    const raw = typeof req.body === 'string' ? req.body : JSON.stringify(req.body)
+    if (Buffer.byteLength(raw) > MAX_BODY_BYTES) throw new Error('Message is too large.')
+    return JSON.parse(raw)
+  }
 
   const chunks = []
   let size = 0
@@ -18,6 +22,7 @@ async function readBody(req) {
 }
 
 function respond(res, status, payload) {
+  res.setHeader('Cache-Control', 'no-store')
   res.statusCode = status
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.end(JSON.stringify(payload))
