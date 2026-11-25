@@ -111,7 +111,7 @@ function App() {
             <p>Use the contact form for project enquiries. Please share only the details needed to discuss your work. SPK Engineering uses your contact details to respond.</p>
             <p>Submitting an enquiry does not confirm an order. Materials, dimensions, pricing and installation dates are agreed separately with the workshop before work begins.</p>
           </details>
-          <div className="footer-bottom"><a className="brand" href="#home"><span className="brand-mark">S<span>P</span>K</span><span className="brand-name">SPK <b>ENGINEERING</b></span></a><span>© 2002 SPK Engineering. All rights reserved.<small className="designer-credit">Website by <a href="https://www.linkedin.com/in/pradeep-j-175b38404/" target="_blank" rel="noopener noreferrer">@Pradeep</a></small></span><a href="#home">BACK TO TOP ↑</a></div>
+          <div className="footer-bottom"><a className="brand" href="#home" aria-label="SPK Engineering home"><img className="weld-mark" src="/weld-mark.svg" width="32" height="32" alt="" /><span className="brand-name">SPK <b>ENGINEERING</b></span></a><span>© 2002 SPK Engineering. All rights reserved.<small className="designer-credit">Website by <a href="https://www.linkedin.com/in/pradeep-j-175b38404/" target="_blank" rel="noopener noreferrer">@Pradeep</a></small></span><a href="#home">BACK TO TOP ↑</a></div>
         </div>
       </footer>
     </main>
