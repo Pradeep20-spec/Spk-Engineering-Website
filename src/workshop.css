@@ -88,3 +88,7 @@
 .designer-credit a { color:var(--orange); text-underline-offset:3px; text-decoration:underline; }
 .footer-bottom { padding-block:16px; }
 @media(max-width:540px){.designer-credit{text-align:left}}
+.weld-mark { flex:none; display:block; }
+.weld-wordmark { display:grid; gap:1px; }
+.weld-wordmark strong { font:800 22px/.9 var(--display); letter-spacing:.015em; }
+.weld-wordmark > span { font:500 8px/1.3 var(--mono); letter-spacing:.11em; }

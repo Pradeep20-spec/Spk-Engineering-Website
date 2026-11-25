@@ -52,7 +52,7 @@ function App() {
       <header className="topbar">
         <div className="reading-progress" aria-hidden="true" />
         <div className="wrap topbar-inner">
-        <a className="brand" href="#home" aria-label="SPK Engineering home"><span className="brand-mark">S<span>P</span>K</span><span className="brand-name">SPK <b>ENGINEERING</b></span></a>
+        <a className="brand" href="#home" aria-label="SPK Engineering home"><img className="weld-mark" src="/weld-mark.svg" width="42" height="42" alt="" /><span className="weld-wordmark"><strong>SPK</strong><span>ENGINEERING</span></span></a>
         <nav aria-label="Main navigation"><ServiceNav choose={setActive}/><a href="#about">About</a><a href="#contact">Contact</a></nav>
         <div className="header-actions"><button className="theme-toggle" type="button" onClick={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} aria-pressed={theme === 'dark'} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span><span className="theme-toggle-label">{theme === 'light' ? 'Dark' : 'Light'}</span></button><a className="nav-call" href="tel:+919840343163">Call us <span>↗</span></a></div>
         </div>
